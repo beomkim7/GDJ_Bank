@@ -75,19 +75,20 @@
                             </table>
 
                             <div>
-                                <form class="row g-3" action="./list">
+                                <form id="searchForm" class="row g-3" action="./list">
+                                    <input id="page" type="hidden" name="page" value="1">
+
                                     <div class="col-auto">
-                                        <select name="kind" class="form-select" aria-label="Default select example">
-                                        <option class="a" value="kind1">Title</option>
-                                        <option class="a" value="kind2">Contents</option>
-                                        <option class="a" value="kind3">Writer</option>
-                                        <option class="a" value="kind4">Title+Contents+Writer</option>
+                                        <select name="kind" id="kind" data-kind="${pager.kind}" class="form-select" aria-label="Default select example">
+                                            <option class="a" value="kind1">Title</option>
+                                            <option class="a" value="kind2">Contents</option>
+                                            <option class="a" value="kind3">Writer</option>
                                       </select>
                                     </div>		
                                   
                                     <div class="col-auto">
                                       <label for="search" class="visually-hidden">Search</label>
-                                      <input type="text" name="search" class="form-control" id="search">
+                                      <input type="text" name="search" class="form-control" id="search" value="${pager.search}">
                                     </div>
                           
                                     <div class="col-auto">
@@ -100,16 +101,16 @@
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination">
                                       <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                          <span aria-hidden="true">&laquo;</span>
+                                        <a class="page-link" href="#" aria-label="Previous" >
+                                          <span class="pager" aria-hidden="true" data-page="${pager.startNum-1}">&laquo;</span>
                                         </a>
                                       </li>
                                       <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                                      <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                      <li class="page-item"><a class="page-link pager" data-page="${i}" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
                                       </c:forEach>
                                       <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                          <span aria-hidden="true">&raquo;</span>
+                                        <a class="page-link" href="#"  aria-label="Next" >
+                                          <span class="pager" aria-hidden="true" data-page="${pager.lastNum+1}">&raquo;</span>
                                         </a>
                                       </li>
                                     </ul>
@@ -130,7 +131,7 @@
         <!-- Footer-->
         <!-- 사용전 경로를 꼭 수정 하세요 -->
         <c:import url="../temps/footer.jsp"></c:import>
-
+        <script src="/resources/js/boardSearch.js"></script>
     </body>
 </html>
     
