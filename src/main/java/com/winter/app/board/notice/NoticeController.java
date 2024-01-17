@@ -81,7 +81,7 @@ public class NoticeController {
 		
 		List<BoardDTO> ar = boardService.getList(pager);
 		model.addAttribute("list", ar);
-		
+		model.addAttribute("pager", pager);
 		return "board/list";
 	}
 

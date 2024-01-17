@@ -32,6 +32,9 @@ public class Pager {
 	}
 	
 	public void makeNum(Long totalCount) {
+		if(totalCount<1) {
+			totalCount=1L;
+		}
 		Long totalPage=0L;
 		totalPage = totalCount/this.getPerPage();
 		

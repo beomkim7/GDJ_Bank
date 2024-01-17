@@ -34,6 +34,7 @@ public class NoticeService implements BoardService {
 		pager.makeRow();
 		
 		//검색
+		pager.makeNum(boardDAO.getTotalCount(pager));
 		
 		return boardDAO.getList(pager);
 	}

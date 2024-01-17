@@ -4,6 +4,21 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.winter.app.board.notice.NoticeDAO">
+  	<sql id="search">
+  		<where>
+  			<if test="kind == 'kind1'">
+  				BOARDTITLE LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind2'">
+  				BOARDCONTENTS LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind3'">
+  				BOARDWRITER LIKE '%'||#{search}||'%'
+  			</if>
+  			
+  		</where>
+  	</sql>
+
   	  	<!-- file List -->
   	<select id="getFileList" parameterType="BoardDTO" resultType="BoardFileDTO">
   		SELECT FILENAME FROM NOTICEFILES WHERE BOARDNUM=#{boardNum}
@@ -46,14 +61,17 @@
   		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0)
   	</insert>
   	
-  	
+  	 <select id="getTotalCount" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(BOARDNUM) FROM NOTICE
+  		<include refid="search"></include>
+  	</select>
   	<!-- list -->
   	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
   		SELECT * FROM
   		(SELECT ROWNUM R, N.* FROM
   			(
   				SELECT * FROM NOTICE 
-  			 	
+  			 	<include refid="search"></include>
   				ORDER BY BOARDNUM DESC
   			) 
   		N)
