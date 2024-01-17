@@ -18,7 +18,10 @@ public class NoticeDAOTest extends MyTest {
 	
 	@Test
 	public void test() throws Exception {
-		this.getListTest();
+		Pager pager = new Pager();
+		pager.makeRow();
+		List<BoardDTO> ar = noticeDAO.getList(pager);
+		assertNotEquals(0, ar.size());
 	}
 	
 	

@@ -75,6 +75,48 @@
                             </table>
 
                             <div>
+                                <form class="row g-3" action="./list">
+                                    <div class="col-auto">
+                                        <select name="kind" class="form-select" aria-label="Default select example">
+                                        <option class="a" value="kind1">Title</option>
+                                        <option class="a" value="kind2">Contents</option>
+                                        <option class="a" value="kind3">Writer</option>
+                                        <option class="a" value="kind4">Title+Contents+Writer</option>
+                                      </select>
+                                    </div>		
+                                  
+                                    <div class="col-auto">
+                                      <label for="search" class="visually-hidden">Search</label>
+                                      <input type="text" name="search" class="form-control" id="search">
+                                    </div>
+                          
+                                    <div class="col-auto">
+                                      <button type="submit" class="btn btn-primary mb-3">검색</button>
+                                    </div>
+                          .		</form>
+                            </div>
+
+                            <div>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                      </li>
+                                      <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                                      <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                      </c:forEach>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                          <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                            </div>
+
+                            <div>
                                 <a href="./add" class="btn btn-danger">글쓰기</a>
                             </div>
                         </div>

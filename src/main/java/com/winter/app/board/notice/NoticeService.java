@@ -3,6 +3,7 @@ package com.winter.app.board.notice;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,6 +26,7 @@ public class NoticeService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 	@Autowired
+	//내장 객체 (Tomcat)
 	private ServletContext servletContext;
 
 	@Override
@@ -44,6 +46,7 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile [] attachs) throws Exception {
+		
 		//1. 글을 등록 - 글번호를 알아오기 위해서
 		int result = boardDAO.setAdd(boardDTO);
 		

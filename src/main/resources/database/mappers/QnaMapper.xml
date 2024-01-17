@@ -4,6 +4,22 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.winter.app.board.qna.QnaDAO">
+  	<sql id="search">
+  		<where>
+  			<if test="kind == 'kind1'">
+  				BOARDTITLE LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind2'">
+  				BOARDCONTENTS LIKE '%'||#{search}||'%'
+  			</if>
+  			<if test="kind == 'kind3'">
+  				BOARDWRITER LIKE '%'||#{search}||'%'
+  			</if>
+  			
+  		</where>
+  	</sql>
+  	
+  	
   	<!-- file Delete -->
   	<delete id="setFileDelete" parameterType="BoardDTO">
   		DELETE QNAFILES WHERE BOARDNUM=#{boardNum}
@@ -25,6 +41,8 @@
   		(#{boardNum}, #{boardTitle}, #{boardWriter},#{boardContents}, SYSDATE, 0,#{boardRef},#{boardStep},#{boardDepth}, 0)
     </insert>
     
+    
+    
     <!-- reply step update -->
     <update id="setReplyUpdate" parameterType="QnaDTO">
     	UPDATE QNA SET BOARDSTEP=BOARDSTEP+1
@@ -38,6 +56,20 @@
   		VALUES
   		(BOARD_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName})
   	</insert>
+  	 
+  	 
+  	 <update id="setUpdate" parameterType="BoardDTO">
+  		UPDATE QNA 
+  		<set>
+	  		<if test="boardTitle != null and boardTitle !=''">
+	  		BOARDTITLE=#{boardTitle},
+	  		</if>
+	  		<if test="boardContents != null">
+	  		BOARDCONTENTS=#{boardContents}
+	  		</if>
+  		</set>
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
     
     <!-- add -->
   	<insert id="setAdd" parameterType="BoardDTO">
@@ -85,6 +117,10 @@
   		WHERE BOARDNUM=#{boardNum}	  
   	</select>
   
+  	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(BOARDNUM) FROM QNA
+  		<include refid="search"></include>
+  	</select>
   
   	<!-- list -->
   	<select id="getList" resultType="QnaDTO" parameterType="Pager">
@@ -92,7 +128,7 @@
   		(SELECT ROWNUM R, N.* FROM
   			(
   				SELECT * FROM QNA 
-  			 	
+  			 	<include refid="search"></include>
   				ORDER BY BOARDREF DESC, BOARDSTEP ASC
   			) 
   		N)

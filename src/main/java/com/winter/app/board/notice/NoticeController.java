@@ -47,7 +47,7 @@ public class NoticeController {
 	@PostMapping("update")
 	public String setUpdate(BoardDTO boardDTO, MultipartFile[] attachs)throws Exception{
 		int result = boardService.setUpdate(boardDTO, attachs);
-		return "redirect:./list";
+		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
 	}
 	
 	@PostMapping("delete")
