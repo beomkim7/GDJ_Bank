@@ -37,6 +37,13 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	@GetMapping("update")
+	public String setUpdate(BoardDTO boardDTO, Model model)throws Exception{
+		boardDTO = boardService.getDetail(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		return "board/update";
+	}
+	
 	@PostMapping("delete")
 	public String setDelete(BoardDTO boardDTO)throws Exception{
 		int result=boardService.setDelete(boardDTO);
