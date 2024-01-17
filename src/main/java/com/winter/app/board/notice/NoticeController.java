@@ -37,6 +37,12 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	@PostMapping("delete")
+	public String setDelete(BoardDTO boardDTO)throws Exception{
+		int result=boardService.setDelete(boardDTO);
+		return "redirect:./list";
+	}
+	
 	@GetMapping("add")
 	public String setAdd()throws Exception{
 		return "board/add";
