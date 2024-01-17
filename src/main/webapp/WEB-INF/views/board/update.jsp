@@ -23,7 +23,7 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-9 col-xxl-8">
-                        <form action="./add" method="POST" enctype="multipart/form-data">
+                        <form action="./update" method="POST" enctype="multipart/form-data">
                           <input type="hidden" name="boardNum" value="${boardDTO.boardNum}">
                           <div class="mb-3">
                             <label for="title" class="form-label">Title</label>

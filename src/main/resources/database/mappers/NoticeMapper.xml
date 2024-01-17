@@ -17,6 +17,19 @@
   		(BOARD_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{oriName})
   	</insert>
   	
+  	<update id="setUpdate" parameterType="BoardDTO">
+  		UPDATE NOTICE 
+  		<set>
+	  		<if test="boardTitle != null and boardTitle !=''">
+	  		BOARDTITLE=#{boardTitle},
+	  		</if>
+	  		<if test="boardContents != null">
+	  		BOARDCONTENTS=#{boardContents}
+	  		</if>
+  		</set>
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
+  	
   	<!-- Delete -->
   	<delete id="setDelete" parameterType="BoardDTO">
   		DELETE NOTICE WHERE BOARDNUM=#{boardNum}
