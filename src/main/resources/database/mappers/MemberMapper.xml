@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
+  <mapper namespace="com.winter.app.member.MemberDAO">
+  	<select id="getDetail" parameterType="MemberDTO" resultMap="getDetailResult">
+  		SELECT *
+  		FROM MEMBER
+  		LEFT JOIN
+  		AVATAR
+  		USING (USERNAME) 
+  		WHERE USERNAME=#{userName}
+  	</select>
+  	<resultMap type="MemberDTO" id="getDetailResult">
+  	<id column="USERNAME" property="userName"/>
+  	<result column="PASSWORD" property="password"/>
+  	<result column="NAME" property="name"/>
+  	<result column="EMAIL" property="email"/>
+  	<result column="PHONE" property="phone"/>
+  	<result column="ADDRESS" property="address"/>
+  	<association property="avatarDTO" javaType="AvatarDTO">
+  		<id column="FILENUM" property="fileNum" />
+  		<result column="FILENAME" property="fileName"/>
+  		<result column="ORINAME" property="oriName"/>
+  	</association>
+  	</resultMap>
+  	
+  	
+  	
+  	<insert id="setJoin" parameterType="MemberDTO">
+  		INSERT INTO MEMBER 
+  		(USERNAME,PASSWORD,NAME,EMAIL,PHONE,ADDRESS)
+  		VALUES
+  		(#{userName},#{password},#{name},#{email},#{phone},#{address})
+  	</insert>
+  	
+  	<insert id ="setAvatarJoin" parameterType="AvatarDTO">
+  		INSERT INTO AVALTA
+  		(FILENAME,USERNAME,FILENAME,ORINAME)
+  		VALUES
+  		(QNA_SEQ.NEXTVAL,#{userName},#{fileName},#{oriName})
+  	</insert>
+  
+  </mapper>
