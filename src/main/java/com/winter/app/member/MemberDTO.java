@@ -8,6 +8,17 @@ public class MemberDTO {
 	private String email;
 	private String phone;
 	private String address;
+	
+	private AvatarDTO avatarDTO;
+	
+	
+	
+	public AvatarDTO getAvatarDTO() {
+		return avatarDTO;
+	}
+	public void setAvatarDTO(AvatarDTO avatarDTO) {
+		this.avatarDTO = avatarDTO;
+	}
 	public String getUserName() {
 		return userName;
 	}

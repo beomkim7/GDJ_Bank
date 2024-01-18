@@ -18,6 +18,22 @@ public class MemberService {
 	@Autowired
 	private ServletContext servletContext;
 	
+	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
+		MemberDTO m = memberDAO.getDetail(memberDTO);
+		
+		if(m != null) {
+			if(m.getPassword().equals(memberDTO.getPassword())) {
+				return m;
+			}else {
+				m=null;
+				//return null;
+			}
+		}
+		
+		return m;
+		
+	}
+	
 	public int setJoin (MemberDTO memberDTO, MultipartFile avatar)throws Exception{
 		int result=0;
 		result = memberDAO.setJoin(memberDTO);

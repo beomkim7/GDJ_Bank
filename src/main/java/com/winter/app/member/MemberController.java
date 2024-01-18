@@ -1,5 +1,8 @@
 package com.winter.app.member;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,20 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("login")
+	public void getLogin()throws Exception{}
+	
+	@PostMapping("login")
+	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
+		memberDTO = memberService.getLogin(memberDTO);
+		//request.getSession()
+		session.setAttribute("member", memberDTO);
+		System.out.println("Login : "+memberDTO);
+		return "redirect:../";
+		
+	}
+	
 	
 	@GetMapping("join")
 	public void setJoin()throws Exception{
