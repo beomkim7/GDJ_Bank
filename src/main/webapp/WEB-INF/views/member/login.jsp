@@ -19,6 +19,10 @@
 			<c:import url="../temps/header.jsp"></c:import>
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-11 col-xl-9 col-xxl-8">
+                	<div>
+                		${msg}
+                	</div>
+                
                     <form action="./login" method="post">
                        
                         <div class="mb-3">

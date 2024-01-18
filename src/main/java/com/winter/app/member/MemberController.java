@@ -17,15 +17,32 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("mypage")
+	public void getMypage()throws Exception{}
+	
+	@GetMapping("logout")
+	public String getLogout(HttpSession session)throws Exception{
+//		session.setAttribute("member", null);
+//		session.removeAttribute("member");
+//		session.removeValue("member");
+		session.invalidate();
+		return "redirect:../";
+	}
+	
 	@GetMapping("login")
 	public void getLogin()throws Exception{}
 	
 	@PostMapping("login")
-	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
+	public String getLogin(MemberDTO memberDTO, HttpSession session, Model model)throws Exception{
 		memberDTO = memberService.getLogin(memberDTO);
 		//request.getSession()
+		if(memberDTO == null) {
+			model.addAttribute("msg", "ID 또는 PW 확인");
+			return "member/login";
+		}
+		
 		session.setAttribute("member", memberDTO);
-		System.out.println("Login : "+memberDTO);
+		
 		return "redirect:../";
 		
 	}
