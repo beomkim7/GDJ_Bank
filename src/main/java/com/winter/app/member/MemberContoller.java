@@ -73,6 +73,11 @@ public class MemberContoller {
 		return "redirect:../";
 	}
 	
+	@GetMapping("agreement")
+	public void setAgreemwnt()throws Exception{
+		
+	}
+	
 	@GetMapping("join")
 	public String setJoin(MemberDTO memberDTO) throws Exception{
 		
