@@ -32,8 +32,20 @@
 		
 		<interceptor>
 			<mapping path="/qna/*"/>
-			<exclude-mapping path="/qna/list"/>
+			<mapping path="/member/mypage"/>
+			<mapping path="/member/update"/>
+			<mapping path="/member/delete"/>
+			<exclude-mapping path="/qna/list"/>			
 			<beans:ref bean="authenticationInterCeptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/update"/>
+			<mapping path="/qna/delete"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
+			<beans:ref bean="writerCheckInterCeptor"/>
+			
 		</interceptor>
 		
 	</interceptors>

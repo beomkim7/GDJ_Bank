@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * Servlet Filter implementation class filter2
+ * Servlet Filter implementation class Filter2
  */
 public class Filter2 implements Filter {
 
@@ -39,7 +39,6 @@ public class Filter2 implements Filter {
 		chain.doFilter(request, response);
 		System.out.println("Filter2 진입후");
 	}
-
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
