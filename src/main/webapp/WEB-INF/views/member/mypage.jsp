@@ -33,7 +33,7 @@
                                         <div class="p-5">
                                             <h2 class="fw-bolder">나의정보</h2>
                                             <div>
-                                            	${memberDTO.name}
+                                            	${member.name}
                                             </div>
 
                                             <div>
@@ -43,17 +43,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <c:if test="${bbs eq '1'}">
-                                    <a class="btn btn-primary" href="reply?boardNum=${boardDTO.boardNum}">답글</a>
-                                </c:if>
-                                <a id="update" class="btn btn-info" href="#">Update</a>
-                                <a id="delete" class="btn btn-primary" href="#">Delete</a>
-                                <form id="frm" action="./update" method="get">
-                                    <input type="hidden" name="boardNum" value="${boardDTO.boardNum}">
-                                </form>
-                            </div>
 
+                            <div>
+                                <a class="btn btn-primary" href="./update">수정</a>
+                                <a class="btn btn-primary" href="./updatePassword">비밀번호수정</a>
+                                <a class="btn btn-primary" href="./delete">탈퇴</a>
+                            </div>
+          
 
                         </div>
                     </div>

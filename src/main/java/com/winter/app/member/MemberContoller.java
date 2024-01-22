@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +20,28 @@ public class MemberContoller {
 	@Autowired
 	MemberService memberService;
 	
+	@GetMapping("update")
+	public void setUpdate(HttpSession session,Model model)throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		memberDTO=memberService.getDetail(memberDTO);
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(MemberDTO memberDTO,HttpSession session)throws Exception{
+		MemberDTO m = (MemberDTO)session.getAttribute("member");
+		memberDTO.setUserName(m.getUserName());
+	
+		int result = memberService.setUpdate(memberDTO);
+		
+		
+		return "redirect:./mypage";
+	}
+	
 	@GetMapping("mypage")
-	public String getMyPage(MemberDTO memberDTO,Model model,HttpSession session)throws Exception{
-		memberDTO = (MemberDTO)session.getAttribute("member");
+	public void getMyPage(HttpSession session,Model model)throws Exception{
+		MemberDTO memberDTO= (MemberDTO)session.getAttribute("member");
 		memberDTO = memberService.getDetail(memberDTO);
-		model.addAttribute("memberDTO", memberDTO);
-		return "member/mypage";
+		model.addAttribute("member", memberDTO);
 	}
 	
 	@GetMapping("logout")
