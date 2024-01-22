@@ -11,12 +11,12 @@ import javax.servlet.ServletResponse;
 /**
  * Servlet Filter implementation class filter2
  */
-public class filter2 implements Filter {
+public class Filter2 implements Filter {
 
     /**
      * Default constructor. 
      */
-    public filter2() {
+    public Filter2() {
         // TODO Auto-generated constructor stub
     }
 
