@@ -1,15 +1,41 @@
 package com.winter.app.product;
 
-public class ProductDTO {
+import java.util.List;
+
+import com.winter.app.member.MemberDTO;
+
+
+public class ProductDTO extends MemberDTO{
 	private Long productNum;
 	private String productName;
-	private String productContents;
-	private Long productRate;
-	private Long productJumsu;
-	private Long productCount;
-	private Long productSale;
+	private	String productContents;
+	private	Double productRate;
+	private Double productJumsu;
+	private Integer productCount;
 	
 	
+	public Integer getProductCount() {
+		return productCount;
+	}
+	public void setProductCount(Integer productCount) {
+		this.productCount = productCount;
+	}
+	public Integer getProductSale() {
+		return productSale;
+	}
+	public void setProductSale(Integer productSale) {
+		this.productSale = productSale;
+	}
+	private Integer productSale;
+	private List<ProductFileDTO> productFileDTOs;
+	
+	
+	public List<ProductFileDTO> getProductFileDTOs() {
+		return productFileDTOs;
+	}
+	public void setProductFileDTOs(List<ProductFileDTO> productFileDTOs) {
+		this.productFileDTOs = productFileDTOs;
+	}
 	public Long getProductNum() {
 		return productNum;
 	}
@@ -28,37 +54,19 @@ public class ProductDTO {
 	public void setProductContents(String productContents) {
 		this.productContents = productContents;
 	}
-	public Long getProductRate() {
+	public Double getProductRate() {
 		return productRate;
 	}
-	public void setProductRate(Long productRate) {
+	public void setProductRate(Double productRate) {
 		this.productRate = productRate;
 	}
-	public Long getProductJumsu() {
+	public Double getProductJumsu() {
 		return productJumsu;
 	}
-	public void setProductJumsu(Long productJumsu) {
+	public void setProductJumsu(Double productJumsu) {
 		this.productJumsu = productJumsu;
 	}
-	public Long getProductCount() {
-		return productCount;
-	}
-	public void setProductCount(Long productCount) {
-		this.productCount = productCount;
-	}
-	public Long getProductSale() {
-		return productSale;
-	}
-	public void setProductSale(Long productSale) {
-		this.productSale = productSale;
-	}
+
 	
 	
-	//	PRODUCTNUM
-//	PRODUCTNAME
-//	PRODUCTCONTENTS
-//	PRODUCTRATE
-//	PRODUCTJUMSU
-//	PRODUCTCOUNT
-//	PRODUCTSALE
 }
