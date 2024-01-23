@@ -17,6 +17,7 @@
 	<main class="flex-shrink-0">
 		<!-- Navigation-->
 		<!-- 사용전 경로를 꼭 수정 하세요 -->
+		<c:import url="../temps/header.jsp"></c:import>
 		<section class="py-5">
 			<div class="text-center mb-5">
 				<h1 class="display-5 fw-bolder mb-0">
@@ -31,33 +32,39 @@
 							for="checkAll"> 모두동의 </label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input checks" type="checkbox" value=""
+						<input class="form-check-input checks req" type="checkbox" value=""
 							id="a1"> <label
 							class="form-check-label" for="a1"> 필수동의1 </label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input checks" type="checkbox" value=""
+						<input class="form-check-input checks req" type="checkbox" value=""
 							id="a2"> <label
 							class="form-check-label" for="a2"> 필수동의2</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input checks" type="checkbox" value=""
+						<input class="form-check-input checks req" type="checkbox" value=""
 							id="a3"> <label
 							class="form-check-label" for="a3"> 필수동의3</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input opt" type="checkbox" value=""
+						<input class="form-check-input checks opt" type="checkbox" value=""
 							id="a4"> <label	class="form-check-label" for="a4"> 선택동의1 </label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input opt" type="checkbox" value=""
-							id="a5"> <label	class="form-check-label" for="a5"> 선택동의1 </label>
+						<input class="form-check-input checks opt" type="checkbox" value=""
+							id="a5"> <label	class="form-check-label" for="a5"> 선택동의2 </label>
 					</div>
-					<c:import url="../temps/header.jsp"></c:import>
+
+					<div>
+						<a class="btn btn-primary" href="./join" id="btn">회원가입</a>
+						
+					</div>
+
+					
 				</div>
 			</div>
 		</section>
@@ -65,6 +72,6 @@
 	<!-- Footer-->
 	<!-- 사용전 경로를 꼭 수정 하세요 -->
 	<c:import url="../temps/footer.jsp"></c:import>
-	<script src="../resources/js/agreement.js" type="text/javascript"></script>
+	<script src="../resources/js/member/agreement.js" type="text/javascript"></script>
 </body>
 </html>
