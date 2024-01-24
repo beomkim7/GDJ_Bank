@@ -26,9 +26,14 @@
                                 <div class="fs-3 fw-light text-muted">I can help your business to</div>
                                 <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Get online and grow fast</span></h1>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-                                    <c:if test="${empty sessionScope.member}">
+                                    <c:if test="${not empty sessionScope.member}">
                                     <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="resume.html">Resume</a>
                                     <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="projects.html">Projects</a>
+                                    <button id = "btn">noticelist</button>
+                                    <div id="result"></div>
+                                        <input type="text" id="title">
+                                        <textarea id="contents"></textarea>
+                                        <button id="btn2">공지사항 추가</button>
                                     </c:if>
                                 </div>
                             </div>
@@ -180,7 +185,7 @@
         </main>
         <!-- Footer-->
         <c:import url="./temps/footer.jsp"></c:import>
-
+        <script src="/resources/js/basic.js"></script>
     </body>
 </html>
     

@@ -1,6 +1,7 @@
 package com.winter.app.account;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class AccountDAO {
 	public int setAdd(AccountDTO accountDTO)throws Exception{
 		return sqlSession.insert(namespace+"setAdd", accountDTO);
 	}
-	public List<AccountDTO> getList(AccountDTO accountDTO)throws Exception{
-		return sqlSession.selectList(namespace+"getList", accountDTO);
-	}
+	public List<AccountDTO> getList(Map<String, Object> map)throws Exception{
+		return sqlSession.selectList(namespace+"getList", map);
+	}	
 		
 }

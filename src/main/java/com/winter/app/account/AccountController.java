@@ -1,5 +1,7 @@
 package com.winter.app.account;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +45,7 @@ public class AccountController {
 	}
 	@GetMapping("list")
 	public String getList(AccountDTO accountDTO)throws Exception{
-		accountService.getList(accountDTO);
+		accountService.getList(null, null);
 		return "account/list";
 	}
 	

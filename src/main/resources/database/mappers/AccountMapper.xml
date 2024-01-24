@@ -10,9 +10,36 @@
   		(#{accountNum},#{userName},#{productNum},#{accountPW},SYSDATE,0) 
   	</insert>
   	
-  	<select id="getList" parameterType="AccountDTO" resultType="AccountDTO">
-  		SELECT * FROM ACCOUNT
-  		WHERE USENAME=#(userName)
+  	<resultMap type="AccountDTO" id="getListResult">
+  		<id column="ACCOUNTNUM" property="accountNum"/>
+  		<result column="PRODUCTNUM" property="productNum"/>
+  		<result column="USERNAME" property="userName"/>
+  		<result column="ACCOUNTPW" property="accountpw"/>
+  		<result column="ACCOUNTDATE" property="accountDate"/>
+  		<result column="ACCOUNTBALANCE" property="accountBalance"/>
+  		<association property="productDTO" javaType="ProductDTO">
+  			<result column="PRODUCTNAME" property="productName"/>
+  			<result column="PRODUCTCONTENTS" property="productContents"/>
+  			<result column="PRODUCTRATE" property="productRate"/>
+  			<result column="PRODUCTJUMSU" property="prodictJumsu"/>
+  			<result column="PRODUCTCOUNT" property="productCount"/>
+  			<result column="PRODUCTSALE" property="productSale"/>
+  		</association>  	
+  	</resultMap>
+
+  	<select id="getList" parameterType="Map" resultMap="getListResult">
+  		SELECT * FROM
+  		(
+  			SELECT ROWNUM R,PA.* FROM
+  			(
+		  		SELECT * 
+		  		FROM PRODUCT P
+		  			LEFT JOIN 
+		  			ACCOUNT A
+		  			USING (PRODUCTNUM)
+		  		WHERE USENAME=#{memberDTO.userName})PA
+  		)
+  		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
   	
   </mapper>

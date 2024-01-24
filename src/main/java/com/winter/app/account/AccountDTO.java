@@ -2,6 +2,8 @@ package com.winter.app.account;
 
 import java.sql.Date;
 
+import com.winter.app.product.ProductDTO;
+
 public class AccountDTO {
 //	ACCOUNTNUM	NUMBER
 //	USERNAME	VARCHAR2(20)
@@ -16,6 +18,14 @@ public class AccountDTO {
 	private Date accountDate;
 	private Long accountBalance;
 	
+	private ProductDTO productDTO;
+	
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
 	public Long getAccountNum() {
 		return accountNum;
 	}

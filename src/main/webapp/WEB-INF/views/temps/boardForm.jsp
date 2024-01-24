@@ -9,23 +9,22 @@
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control" id="title" value="${boardDTO.boardTitle}" name="boardTitle">
                           </div>
-                          <%-- <div class="mb-3">
+                          <!-- <div class="mb-3">
                             <label for="writer" class="form-label">Writer</label>
                             <input type="text" value="${member.userName}" class="form-control" id="writer" name="boardWriter">
-                          </div> --%>
+                          </div> -->
                           <div class="mb-3">
                             <label for="contents" class="form-label">Contents</label>
                             <textarea class="form-control" id="summernote" rows="3" name="boardContents">${boardDTO.boardContents}</textarea>
                           </div>
 
-                          <div class="mb-3">
-                             <input class="form-control" type="file" name="attachs">
-                             <input class="form-control" type="file" name="attachs">
-                             <input class="form-control" type="file" name="attachs">   
+                          <div class="mb-3" id="fileList" data-file-count="0" data-file-max="5">
+							              <button type="button" class="del">del</button>
+                            <button type="button" id="fileAdd">파일추가</button>
                           </div>
 
                           <div class="mb-3">
-                            <button class="btn btn-primary">등록</button>
+                            <button class="btn btn-primary text-danger">등록</button>
                           </div>
                         </form>
                     </div>
