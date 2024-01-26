@@ -2,40 +2,15 @@ package com.winter.app.product;
 
 import java.util.List;
 
-import com.winter.app.member.MemberDTO;
-
-
-public class ProductDTO extends MemberDTO{
+public class ProductDTO {
+	
 	private Long productNum;
 	private String productName;
-	private	String productContents;
-	private	Double productRate;
+	private String productContents;
+	private Double productRate;
 	private Double productJumsu;
-	private Integer productCount;
-	
-	
-	public Integer getProductCount() {
-		return productCount;
-	}
-	public void setProductCount(Integer productCount) {
-		this.productCount = productCount;
-	}
-	public Integer getProductSale() {
-		return productSale;
-	}
-	public void setProductSale(Integer productSale) {
-		this.productSale = productSale;
-	}
-	private Integer productSale;
 	private List<ProductFileDTO> productFileDTOs;
 	
-	
-	public List<ProductFileDTO> getProductFileDTOs() {
-		return productFileDTOs;
-	}
-	public void setProductFileDTOs(List<ProductFileDTO> productFileDTOs) {
-		this.productFileDTOs = productFileDTOs;
-	}
 	public Long getProductNum() {
 		return productNum;
 	}
@@ -66,7 +41,12 @@ public class ProductDTO extends MemberDTO{
 	public void setProductJumsu(Double productJumsu) {
 		this.productJumsu = productJumsu;
 	}
-
+	public List<ProductFileDTO> getProductFileDTOs() {
+		return productFileDTOs;
+	}
+	public void setProductFileDTOs(List<ProductFileDTO> productFileDTOs) {
+		this.productFileDTOs = productFileDTOs;
+	}
 	
 	
 }

@@ -2,34 +2,19 @@ package com.winter.app.account;
 
 import java.sql.Date;
 
-import com.winter.app.product.ProductDTO;
+public class AccountDTO{
 
-public class AccountDTO {
-//	ACCOUNTNUM	NUMBER
-//	USERNAME	VARCHAR2(20)
-//	PRODUCTNUM	NUMBER
-//	ACCOUNTPW	NUMBER(4)
-//	ACCOUNTDATE	DATE
-//	ACCOUNTBALANCE	NUMBER
-	private Long accountNum;
+	private String accountNum;
 	private String userName;
 	private Long productNum;
-	private Long accountpw;
+	private Integer accountPw;
 	private Date accountDate;
-	private Long accountBalance;
+	private	Long accountBalance;
 	
-	private ProductDTO productDTO;
-	
-	public ProductDTO getProductDTO() {
-		return productDTO;
-	}
-	public void setProductDTO(ProductDTO productDTO) {
-		this.productDTO = productDTO;
-	}
-	public Long getAccountNum() {
+	public String getAccountNum() {
 		return accountNum;
 	}
-	public void setAccountNum(Long accountNum) {
+	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
 	}
 	public String getUserName() {
@@ -44,11 +29,11 @@ public class AccountDTO {
 	public void setProductNum(Long productNum) {
 		this.productNum = productNum;
 	}
-	public Long getAccountpw() {
-		return accountpw;
+	public Integer getAccountPw() {
+		return accountPw;
 	}
-	public void setAccountpw(Long accountpw) {
-		this.accountpw = accountpw;
+	public void setAccountPw(Integer accountPw) {
+		this.accountPw = accountPw;
 	}
 	public Date getAccountDate() {
 		return accountDate;
@@ -62,5 +47,12 @@ public class AccountDTO {
 	public void setAccountBalance(Long accountBalance) {
 		this.accountBalance = accountBalance;
 	}
+	@Override
+	public String toString() {
+		return "AccountDTO [accountNum=" + accountNum + ", userName=" + userName + ", productNum=" + productNum
+				+ ", accountPw=" + accountPw + ", accountDate=" + accountDate + ", accountBalance=" + accountBalance
+				+ "]";
+	}
+	
 	
 }

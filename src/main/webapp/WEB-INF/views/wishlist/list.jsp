@@ -49,25 +49,47 @@ a {
 				</div>
 			</div>
 		</div>
+
+
+
 		<div class="container">
+			<div>
+				<button id="del">삭제</button>
+				<button id="add">가입</button>
+			</div>
+
 			<table class="table table-hover">
 				<thead>
 					<tr class="table-dark">
+						<th>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="checkAll">
+								<label class="form-check-label" for="checkAll">
+									전체선택
+								</label>
+						  	</div>
+						</th>
 						<th>No</th>
 						<th>Product Name</th>
 						<th>Rate</th>
-						<th>Product Rating</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="ajaxList">
+					<form id="deleteForm">
 					<c:forEach items="${list}" var="dto">
 						<tr>
+							<td>
+								<div class="form-check">
+									<input class="form-check-input checks" type="checkbox" value="${dto.productNum}" >
+								</div>
+							</td>
 							<td>${dto.productNum}</td>
-							<td><a href="./detail?productNum=${dto.productNum}">${dto.productName}</a></td>
+							<td><a href="../product/detail?productNum=${dto.productNum}">${dto.productName}</a></td>
 							<td>${dto.productRate}</td>
-							<td>${dto.productJumsu}</td>
+							
 						</tr>
 					</c:forEach>
+					</form>
 					<%-- <c:if test="${list.size() != 10}">
 							<c:forEach begin="1" end="${11-list.size()}">
 								<tr>
@@ -110,5 +132,6 @@ a {
 	<!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>
+	<script src="/resources/js/wish/wishlist.js" type="text/javascript"></script>
 </body>
 </html>

@@ -65,6 +65,16 @@ console.log('join check');
 
 let checks = {p1:false,p2:false}
 
+$("#userName").blur(function(){
+    fetch("./idCheck?userName="+$("#userName").val(),{
+        method:"GET",
+        
+    })
+    .then(response=>response.text())
+    .then(response=>console.log(response.trim()))
+});
+
+
 $('#btn').click(function(){
     let flag = true;
     for(p in checks){

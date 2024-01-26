@@ -2,44 +2,40 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.winter.app.account.AccountDAO">
-  	<insert id="setAdd" parameterType="AccountDTO" >
-  		INSERT INTO ACCOUNT
-  		(ACCOUNTNUM,USERNAME,PRODUCTNUM,ACCOUNTPW,ACCOUNTDATE,ACCOUNTBALANCE)
-  		VALUES
-  		(#{accountNum},#{userName},#{productNum},#{accountPW},SYSDATE,0) 
+  
+  	<!-- add -->
+  	<insert id="setAdd" parameterType="AccountDTO">
+	  	INSERT INTO ACCOUNT (ACCOUNTNUM, USERNAME, PRODUCTNUM, ACCOUNTPW)
+	  	VALUES(#{accountNum}, #{userName}, #{productNum}, #{accountPw})
   	</insert>
   	
-  	<resultMap type="AccountDTO" id="getListResult">
-  		<id column="ACCOUNTNUM" property="accountNum"/>
-  		<result column="PRODUCTNUM" property="productNum"/>
-  		<result column="USERNAME" property="userName"/>
-  		<result column="ACCOUNTPW" property="accountpw"/>
-  		<result column="ACCOUNTDATE" property="accountDate"/>
-  		<result column="ACCOUNTBALANCE" property="accountBalance"/>
-  		<association property="productDTO" javaType="ProductDTO">
-  			<result column="PRODUCTNAME" property="productName"/>
-  			<result column="PRODUCTCONTENTS" property="productContents"/>
-  			<result column="PRODUCTRATE" property="productRate"/>
-  			<result column="PRODUCTJUMSU" property="prodictJumsu"/>
-  			<result column="PRODUCTCOUNT" property="productCount"/>
-  			<result column="PRODUCTSALE" property="productSale"/>
-  		</association>  	
-  	</resultMap>
-
-  	<select id="getList" parameterType="Map" resultMap="getListResult">
-  		SELECT * FROM
-  		(
-  			SELECT ROWNUM R,PA.* FROM
-  			(
-		  		SELECT * 
-		  		FROM PRODUCT P
-		  			LEFT JOIN 
-		  			ACCOUNT A
-		  			USING (PRODUCTNUM)
-		  		WHERE USENAME=#{memberDTO.userName})PA
-  		)
-  		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+  	<!-- List -->
+  	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(ACCOUNTNUM) FROM ACCOUNT WHERE USERNAME=#{search}
   	</select>
+  	
+  	<select id="getList" resultMap="joinResult" parameterType="Pager">
+  		SELECT * FROM
+  			(SELECT ROWNUM R, N.* FROM
+  				(SELECT * FROM ACCOUNT
+				LEFT JOIN PRODUCT
+				USING (PRODUCTNUM)
+				WHERE USERNAME = #{search} ORDER BY PRODUCTNUM DESC)	
+  			N)
+  		WHERE R BETWEEN #{startRow} AND #{lastRow}  		
+  		
+  	</select>
+  	
+  	<resultMap type="ProductDTO" id="joinResult">
+  		<result column="PRODUCTNAME" property="productName"/>
+  		<result column="PRODUCTRATE" property="productRate"/>
+  		<collection property="accountDTOs" javaType="List" ofType="accountDTO">
+  			<id column="ACCOUNTNUM" property="accountNum"/>
+  			<result column="ACCOUNTBALANCE" property="accountBalance"/>
+  			<result column="ACCOUNTDATE" property="accountDate"/>
+  		</collection>
+  	</resultMap>
   	
   </mapper>

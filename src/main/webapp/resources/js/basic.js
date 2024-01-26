@@ -10,8 +10,12 @@ btn2.addEventListener("click",function(){
         headers:{
             "Content-type":"application/x-www-form-urlencoded"
         },
-        body:""
+        body:"BoardTitle="+t+"&boardContents="+c
     })
+    .then(reponse =>response.text())
+    .then(repomse => console.log(response));
+
+    ;
 })
 
 btn.addEventListener("click",function(){

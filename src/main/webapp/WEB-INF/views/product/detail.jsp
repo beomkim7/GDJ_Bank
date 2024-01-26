@@ -9,73 +9,91 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Product Detail</title>
-<!-- 사용전 경로를 꼭 수정 하세요 -->
+<title>SeokHun-Project</title>
+<!-- 사용전 경로를 꼭 수정하세요  -->
+<!-- head_css  -->
 <c:import url="../temps/head_css.jsp"></c:import>
 </head>
 <body class="d-flex flex-column h-100">
 	<main class="flex-shrink-0">
+		<!-- 사용전 경로를 꼭 수정하세요  -->
 		<!-- Navigation-->
-		<!-- 사용전 경로를 꼭 수정 하세요 -->
 		<c:import url="../temps/header.jsp"></c:import>
-		<section class="py-5">
-			<div class="container px-5 mb-5">
-				<div class="text-center mb-5">
-					<h1 class="display-5 fw-bolder mb-0">
-						<span class="text-gradient d-inline">Prodcut Detail</span>
-					</h1>
-				</div>
-				<div class="row gx-5 justify-content-center">
-					<div class="col-lg-11 col-xl-9 col-xxl-8">
+		<div class="container px-5 my-5">
+			<div class="text-center mb-5">
 
-						<!--project-->
-						<div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-							<div class="card-body p-0">
-								<div class="d-flex align-items-center">
-									<div class="p-5">
-										<div>
-											<h3>${productDTO.productNum}</h3>
-											<div>${productDTO.productNum}</div>
-											<div>${productDTO.productName}</div>
-											<div>${productDTO.productContents}</div>
-											<div>${productDTO.productRate}</div>
-											<div>${productDTO.productJumsu}</div>
-											
-											<div><h2>FILE</h2></div>
-											<div>
-                                                <c:forEach items="${productDTO.productFileDTOs}" var="f">
-                                                    <a href="/resources/upload/product/${f.fileName}">${f.oriName}</a>
-                                                    
-                                                </c:forEach>
-											
-											</div>
-											
-										</div>
-									</div>
-								</div>
-							</div>
-							<div>
-								<a id="update" class="btn btn-info" href="#">Update</a> 
-								<a id="delete" class="btn btn-primary" href="#">Delete</a>
-								<form id="frm" action="./update" method="get">
-								
-									<input type="hidden" name="productNum"
-										value="${productDTO.productNum}">
-								</form>
-								<a href="../account/add?productNum=${productDTO.productNum}">계좌추가</a>
-								
-							</div>
+				<div class="container-lg">
+					<c:if test="${not empty detail}">
+						<table class="table table-hover">
+							<thead>
+								<tr class="table-dark">
+									<th>Product Num</th>
+									<th>Product Name</th>
+									<th>Product Contents</th>
+									<th>Product Rate</th>
+									<th>Product Jumsu</th>
+									<th>Product File</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>${detail.productNum}</td>
+									<td>${detail.productName}</td>
+									<td>${detail.productContents}</td>
+									<td>${detail.productRate}</td>
+									<td>${detail.productJumsu}</td>
+									<td><c:forEach items="${detail.productFileDTOs}" var="f">
+											<a href="/resources/upload/product/${f.fileName}">${f.oriName}</a>
+											<br>
+										</c:forEach></td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="btn btn-light" id="up"
+							data-product-num="${detail.productNum}">수정</button>
+						<button class="btn btn-light" id="del">삭제</button>
+						<c:if test="${member ne null}">
+							<button class="btn btn-light" id="create">상품가입</button>
+							<button class="btn btn-light" id="wishList">관심상품</button>
+						</c:if>
+						<form id="frm" action="./update" method="get">
+							<input type="hidden" name="productNum"
+								value="${detail.productNum}">
+						</form>
+					</c:if>
+					<c:if test="${empty detail}">
+						<h3>없는 상품번호 입니다</h3>
+					</c:if>
+				</div>
+				<div class="my-3">
+					<form action="./add">				
+						  <div class="mb-3">							
+							<textarea class="form-control" name="replyContents" id="replyContents" rows="3"></textarea>
+						  </div>
+						  <div class="mb-3">
+						  <select class="form-select" name="replyJumsu" aria-label="Default select example">
+							<option value="5">5</option>
+							<option value="4">4</option>
+							<option value="3">3</option>
+							<option value="2">2</option>
+							<option value="1">1</option>
+						  </select>
 						</div>
-					</div>
+
+						<div>
+							<button class="btn btn_primary" id="replyAdd">댓글달기</button>
+						</div>
+
+						</div>
+					</form>
 				</div>
-		</section>
+			</div>
 
+		</div>
 	</main>
-	<!-- Footer-->
-	<!-- 사용전 경로를 꼭 수정 하세요 -->
-	<script src="/resources/js/boardDetail.js"></script>
+	<!-- 사용전 경로를 꼭 수정하세요  -->
+	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>
-
-
+	<script src="../resources/js/productDetail.js"></script>
 </body>
 </html>
