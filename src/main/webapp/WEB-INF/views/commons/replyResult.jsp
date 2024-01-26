@@ -25,7 +25,7 @@
 				</tbody>
 			</table>
 			<div>
-				<button id="more">더보기(${pager.page}/${pager.totalPage})</button>
+				<button id="more" data-replyList-page="${pager.page}">더보기(${pager.page}/${pager.totalPage})</button>
 			</div>
 			
 			<div>
