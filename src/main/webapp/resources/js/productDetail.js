@@ -6,9 +6,45 @@ const up = document.getElementById("up");
 const dele = document.getElementById("del");
 const create = document.getElementById("create");
 
+const replyContents = document.getElementById("replyContents");
+const replyJumsu = document.getElementById("replyJumsu");
+
+const more = document.getElementById("more");
+
+more.addEventListener("click",()=>{
+    alert('test');
+})
+
 
     //replyAdd(Fetch 사용, 자바스크립트)
+    const replyAdd = document.getElementById("replyAdd");
+    const productNum = document.getElementById("productNum");
+    
+    replyAdd.addEventListener("click",()=>{
+    const replyForm = document.getElementById("replyForm");
+    const replyList = document.getElementById("replyList");
+    let form = new FormData(replyForm);
 
+    fetch("../reply/add",{
+        method:"POST",
+        body:form
+    })
+    .then(r=>r.text())
+    .then(r=>{
+        replyList.innerHTML=r
+        replyForm.reset();
+    })
+    
+})
+
+fetch("../reply/list?productNum="+productNum.value,{
+    method:"GET"
+
+})
+.then(r=>r.text())
+.then(r=>{
+    replyList.innerHTML=r
+})
 
     up.addEventListener("click", function(){
         frm.submit();

@@ -65,8 +65,14 @@
 						<h3>없는 상품번호 입니다</h3>
 					</c:if>
 				</div>
+
+				<div class="my-3" id="replyList">
+						
+				</div>
+				
 				<div class="my-3">
-					<form action="./add">				
+					<form id="replyForm">	
+						<input type="hidden" name="productNum" value="${detail.productNum}"id="productNum">			
 						  <div class="mb-3">							
 							<textarea class="form-control" name="replyContents" id="replyContents" rows="3"></textarea>
 						  </div>
@@ -81,7 +87,7 @@
 						</div>
 
 						<div>
-							<button class="btn btn_primary" id="replyAdd">댓글달기</button>
+							<button type="button" class="btn btn_primary" id="replyAdd">댓글달기</button>
 						</div>
 
 						</div>
