@@ -37,26 +37,20 @@ replyList.addEventListener("click",(event)=>{
     const replyList = document.getElementById("replyList");
     let form = new FormData(replyForm);
 
-    fetch("../reply/add",{
-        method:"POST",
-        body:form
+    more.addEventListener("click",()=>{
+        let p = more.getAttribute("data-replyList-Page");
+        let a = more.getAttribute("data-replyList-totalPage");
+        
     })
-    .then(r=>r.text())
-    .then(r=>{
-        replyList.innerHTML=r
-        replyForm.reset();
-    })
-    
-})
 
-fetch("../reply/list?productNum="+productNum.value,{
-    method:"GET"
+// fetch("../reply/list?productNum="+productNum.value,{
+//     method:"GET"
 
-})
-.then(r=>r.text())
-.then(r=>{
-    replyList.innerHTML=r
-})
+// })
+// .then(r=>r.text())
+// .then(r=>{
+//     replyList.innerHTML=r
+// })
 
     up.addEventListener("click", function(){
         frm.submit();
