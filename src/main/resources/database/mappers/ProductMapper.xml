@@ -65,6 +65,11 @@
   			 LEFT OUTER JOIN 
   			 PRODUCTFILES PF 
   			 ON P.PRODUCTNUM = PF.PRODUCTNUM
+  			 
+  			 LEFT JOIN
+  			 REPLY R
+  			 ON P.PRODUCTNUM = R.PRODUCTNUM
+  			 
 		WHERE P.PRODUCTNUM=#{productNum}
   	</select>
   	

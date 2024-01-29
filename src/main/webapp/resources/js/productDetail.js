@@ -17,8 +17,7 @@ replyList.addEventListener("click",(event)=>{
     if(e.target.getAttribute("id")=='more'){
         let p = e.target.getAttribute('data-replyList-page');
         fetch("../reply/list?productNum="+productNum.value+"&page="+(p*1+1),{
-            method:"GET"
-        
+            method:"GET"        
         })
         .then(r=>r.text())
         .then(r=>{

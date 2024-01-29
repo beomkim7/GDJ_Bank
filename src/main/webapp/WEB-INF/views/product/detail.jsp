@@ -66,14 +66,29 @@
 					</c:if>
 				</div>
 
-				<div class="my-3" id="replyList">
-						
-				</div>
-				
 				<div class="my-3">
-					<form id="replyForm">	
-						<input type="hidden" name="productNum" value="${detail.productNum}"id="productNum">			
-						  <div class="mb-3">							
+					<table>
+						<thead>
+							<tr>
+								<th>contents</th>
+								<th>writer</th>
+								<th>date</th>
+							</tr>
+						</thead>
+						<tbody  id="replyList">
+
+						</tbody>
+						
+					</table>
+					<div>
+						<button>더보기</button>
+					</div>
+				</div>
+
+				<div class="my-3">
+					<form id="replyForm">
+						  <input type="hidden" name="productNum" value="${detail.productNum}">	
+						  <div class="mb-3">
 							<textarea class="form-control" name="replyContents" id="replyContents" rows="3"></textarea>
 						  </div>
 						  <div class="mb-3">
@@ -84,15 +99,15 @@
 							<option value="2">2</option>
 							<option value="1">1</option>
 						  </select>
-						</div>
+						  </div>
 
-						<div>
-							<button type="button" class="btn btn_primary" id="replyAdd">댓글달기</button>
-						</div>
-
-						</div>
+						  <div>
+							<button type="button" class="btn btn-primary" id="replyAdd">댓글달기</button>
+						  </div>
 					</form>
+
 				</div>
+
 			</div>
 
 		</div>
