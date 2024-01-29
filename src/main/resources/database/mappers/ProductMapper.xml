@@ -24,6 +24,7 @@
   			<result column="FILENAME" property="fileName"/>
   			<result column="ORINAME" property="oriName"/>
   		</collection>
+  	
   	</resultMap>
   	
   	<insert id="addFile" parameterType="ProductFileDTO">
@@ -66,10 +67,10 @@
   			 PRODUCTFILES PF 
   			 ON P.PRODUCTNUM = PF.PRODUCTNUM
   			 
-  			 LEFT JOIN
+  			<!--  LEFT JOIN
   			 REPLY R
   			 ON P.PRODUCTNUM = R.PRODUCTNUM
-  			 
+  			  -->
 		WHERE P.PRODUCTNUM=#{productNum}
   	</select>
   	
