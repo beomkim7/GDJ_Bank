@@ -8,10 +8,14 @@
  const more = document.getElementById("more")
  const replyList = document.getElementById("replyList");
  const replyAdd = document.getElementById("replyAdd");
-
+ const replyUpdateButton = document.getElementById("replyUpdateButton");	
 
 
 getReplyList(1, up.getAttribute("data-product-num"));
+
+//모달 수정 버튼
+
+//수정 버튼
 
 //삭제 버튼
 $("#replyList").on("click", ".del", function(){

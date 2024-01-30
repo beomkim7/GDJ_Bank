@@ -19,7 +19,9 @@ import com.winter.app.board.qna.QnaDAO;
 import com.winter.app.member.MemberDTO;
 
 @Component
-public class WriterCheckInterceptor extends HandlerInterceptorAdapter {
+public class WriterCheckInterCeptor extends HandlerInterceptorAdapter {
+	
+	//작성자가 맞는지 판단
 	
 	@Autowired
 	private NoticeDAO noticeDAO;

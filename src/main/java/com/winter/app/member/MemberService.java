@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.errors.MemberLoginException;
 import com.winter.app.util.FileManager;
 
 @Service
@@ -31,14 +32,18 @@ public class MemberService {
 		
 		if(m != null) {
 			if(m.getPassword().equals(memberDTO.getPassword())) {
+				memberDTO.setRoleDTOs(m.getRoleDTOs());
 				return memberDTO;
 			}else {
+				//pw가 틀림
 				m=null;
+				throw new MemberLoginException("PW 확인");
 				//return null;
 			}
+		}else {			
+			//id가 틀림
+			throw new MemberLoginException("ID 확인");
 		}
-		
-		return m;
 		
 	}
 	
