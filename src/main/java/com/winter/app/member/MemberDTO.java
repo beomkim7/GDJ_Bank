@@ -1,10 +1,7 @@
 package com.winter.app.member;
 
-import java.util.List;
-
-import com.winter.app.board.BoardFileDTO;
-
 public class MemberDTO {
+	
 	private String userName;
 	private String password;
 	private String name;
@@ -14,7 +11,8 @@ public class MemberDTO {
 	
 	private AvatarDTO avatarDTO;
 	
-
+	
+	
 	public AvatarDTO getAvatarDTO() {
 		return avatarDTO;
 	}
@@ -59,5 +57,5 @@ public class MemberDTO {
 	}
 	
 	
-	
+
 }

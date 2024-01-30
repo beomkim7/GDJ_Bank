@@ -5,64 +5,66 @@
   <!-- mapper namespace는 비우면 에러 -->
   <mapper namespace="com.winter.app.member.MemberDAO">
   	<update id="setUpdate" parameterType="MemberDTO">
-		UPDATE MEMBER 
-	  		<set>		  		
-		  		<if test="name != null and name !=''">
-		  		NAME=#{name},
-		  		</if>
-		  		
-		  		<if test="email != null and email!=''">
-		  		EMAIL=#{email},
-		  		</if>
-		  		
-		  		<if test="phone != null and phone!=''">
-		  		PHONE=#{phone},
-		  		</if>
-		  		
-		  		<if test="address != null and address!=''">
-		  		ADDRESS=#{address},
-		  		</if>
-		  		
-	  		</set>
-	  		WHERE USERNAME=#{userName}
+  		UPDATE MEMBER
+  			<set>
+  				<if test="name != null and name !=''">
+  					NAME=#{name},
+  				</if>
+  				
+  				<if test="email != null and email !=''">
+  					EMAIL=#{email},
+  				</if>
+  				
+  				<if test="phone != null and phone !=''">
+  					PHONE=#{phone},
+  				</if>
+  				<if test="address != null and address !=''">
+  					ADDRESS=#{address},
+  				</if>
+  				
+  			</set>
+  			WHERE USERNAME=#{userName}
+  		
   	</update>
+  	
   
   	<select id="getDetail" parameterType="MemberDTO" resultMap="getDetailResult">
-  		SELECT *
-  		FROM MEMBER
-  		LEFT JOIN
-  		AVATAR
-  		USING (USERNAME) 
+  		SELECT * 
+  		FROM MEMBER M
+  			 LEFT JOIN
+  			 AVATAR A
+  			 USING(USERNAME)
   		WHERE USERNAME=#{userName}
   	</select>
+  	
   	<resultMap type="MemberDTO" id="getDetailResult">
-	  	<id column="USERNAME" property="userName"/>
-	  	<result column="PASSWORD" property="password"/>
-	  	<result column="NAME" property="name"/>
-	  	<result column="EMAIL" property="email"/>
-	  	<result column="PHONE" property="phone"/>
-	  	<result column="ADDRESS" property="address"/>
-	  	<association property="avatarDTO" javaType="AvatarDTO">
-	  		<id column="FILENUM" property="fileNum" />
-	  		<result column="FILENAME" property="fileName"/>
-	  		<result column="ORINAME" property="oriName"/>
-	  	</association>
+  		<id column="USERNAME" property="userName"/>
+  		<result column="PASSWORD" property="password"/>
+  		<result column="NAME" property="name"/>
+  		<result column="EMAIL" property="email"/>
+  		<result column="PHONE" property="phone"/>
+  		<result column="ADDRESS" property="address"/>
+  		<association property="avatarDTO" javaType="AvatarDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</association>
+  	
   	</resultMap>
   	
-  	
-  	
   	<insert id="setJoin" parameterType="MemberDTO">
-  		INSERT INTO MEMBER 
-  		(USERNAME,PASSWORD,NAME,EMAIL,PHONE,ADDRESS)
-  		VALUES
-  		(#{userName},#{password},#{name},#{email},#{phone},#{address})
+  		INSERT INTO MEMBER(USERNAME, PASSWORD, NAME, EMAIL, PHONE, ADDRESS )
+  		VALUES (#{userName}, #{password}, #{name}, #{email}, #{phone}, #{address})
   	</insert>
   	
-  	<insert id ="setAvatarJoin" parameterType="AvatarDTO">
-  		INSERT INTO AVALTA
-  		(FILENAME,USERNAME,FILENAME,ORINAME)
+  	  	<!-- FileAdd -->
+  	<insert id="setAvatarAdd" parameterType="AvatarDTO">
+  		INSERT INTO AVATAR 
+  		(FILENUM, USERNAME, FILENAME, ORINAME)
   		VALUES
-  		(QNA_SEQ.NEXTVAL,#{userName},#{fileName},#{oriName})
+  		(BOARD_SEQ.NEXTVAL, #{userName}, #{fileName}, #{oriName})
   	</insert>
-  
+  	
+  	
+  	
   </mapper>

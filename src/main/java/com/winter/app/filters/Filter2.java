@@ -38,7 +38,9 @@ public class Filter2 implements Filter {
 		System.out.println("Filter2 진입전");
 		chain.doFilter(request, response);
 		System.out.println("Filter2 진입후");
+		
 	}
+
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */

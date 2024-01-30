@@ -7,14 +7,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 @Component
 public class AuthenticationInterCeptor extends HandlerInterceptorAdapter{
 	
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		HttpSession session = request.getSession();
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		// TODO Auto-generated method stub
+		HttpSession session  = request.getSession();
 		Object obj = session.getAttribute("member");
-		if(obj !=null) {
+		if(obj != null) {
 			return true;
 		}else {
 			System.out.println("로그인 한 사람만 가능");
@@ -24,11 +27,11 @@ public class AuthenticationInterCeptor extends HandlerInterceptorAdapter{
 			//fowarding
 			request.setAttribute("msg", "로그인이 필요한 기능");
 			request.setAttribute("path", "../member/login");
-			RequestDispatcher v = request.getRequestDispatcher("/WEB-INF/views/commons/result.jsp");
+			RequestDispatcher v  = request.getRequestDispatcher("/WEB-INF/views/commons/result.jsp");
 			v.forward(request, response);
+			
 			return false;
 		}
-		
-		
 	}
+
 }

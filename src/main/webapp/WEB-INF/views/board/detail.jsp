@@ -11,6 +11,7 @@
         <title>Board Detail</title>
     <!-- 사용전 경로를 꼭 수정 하세요 -->
 	<c:import url="../temps/head_css.jsp"></c:import>
+    
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -49,7 +50,7 @@
                                     <a class="btn btn-primary" href="reply?boardNum=${boardDTO.boardNum}">답글</a>
                                 </c:if>
 
-                                <c:if test="${baordDTO.boardWriter eq member.userName}">
+                                <c:if test="${boardDTO.boardWriter eq member.userName}">
                                 <a id="update" class="btn btn-info" href="#">Update</a>
                                 <a id="delete" class="btn btn-primary" href="#">Delete</a>
                                 </c:if>

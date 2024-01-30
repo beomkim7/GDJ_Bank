@@ -2,14 +2,14 @@ package com.winter.app.product;
 
 import java.sql.Date;
 
-public class ReplyDTO extends ProductDTO {
+public class ReplyDTO {
 	
 	private Long replyNum;
 	private Long productNum;
 	private String userName;
 	private String replyContents;
 	private Date replyDate;
-	private Long replyJumsu;
+	private Integer replyJumsu;
 	
 	
 	public Long getReplyNum() {
@@ -42,11 +42,13 @@ public class ReplyDTO extends ProductDTO {
 	public void setReplyDate(Date replyDate) {
 		this.replyDate = replyDate;
 	}
-	public Long getReplyJumsu() {
+	public Integer getReplyJumsu() {
 		return replyJumsu;
 	}
-	public void setReplyJumsu(Long replyJumsu) {
+	public void setReplyJumsu(Integer replyJumsu) {
 		this.replyJumsu = replyJumsu;
 	}
+	
+	
 
 }

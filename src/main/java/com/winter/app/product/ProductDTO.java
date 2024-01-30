@@ -12,6 +12,8 @@ public class ProductDTO {
 	private List<ProductFileDTO> productFileDTOs;
 	private List<ReplyDTO> replyDTOs;
 	
+	
+	
 	public List<ReplyDTO> getReplyDTOs() {
 		return replyDTOs;
 	}

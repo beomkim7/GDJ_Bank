@@ -19,7 +19,7 @@ import com.winter.app.board.qna.QnaDAO;
 import com.winter.app.member.MemberDTO;
 
 @Component
-public class WriterCheckInterCeptor extends HandlerInterceptorAdapter {
+public class WriterCheckInterceptor extends HandlerInterceptorAdapter {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
@@ -30,36 +30,33 @@ public class WriterCheckInterCeptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 			// /qna/update, /notice/update
-		String path = request.getRequestURI();
-		path=path.substring(0, path.lastIndexOf("/"));
-		
-		//num
-		long n = Long.parseLong(request.getParameter("boardNum"));
-		
-		BoardDTO boardDTO = new BoardDTO();
-		boardDTO.setBoardNum(n);
-		
-		if(path.equals("/qna")) {
-			boardDTO=qnaDAO.getDetail(boardDTO);
-		}else {
-			boardDTO=noticeDAO.getDetail(boardDTO);
+			String path = request.getRequestURI();
+			path = path.substring(0, path.lastIndexOf("/"));
 			
-		}
-		
-		//
-		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
-		
-		if(boardDTO.getBoardWriter().equals(memberDTO.getUserName())) {
-			return true;
-		}else {
-			request.setAttribute("msg", "작성자만가능");
-			request.setAttribute("path", "./list");
-			RequestDispatcher v = request.getRequestDispatcher("/WEB-INF/views/commons/result.jsp");
-			v.forward(request, response);
-			return false;
-		}
-		
-	
+			//num 
+			long n = Long.parseLong(request.getParameter("boardNum"));
+			
+			BoardDTO boardDTO = new BoardDTO();
+			boardDTO.setBoardNum(n);
+			
+			if(path.equals("/qna")) {
+				boardDTO= qnaDAO.getDetail(boardDTO);
+			}else {
+				boardDTO= noticeDAO.getDetail(boardDTO);
+			}
+			
+			//
+			MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
+			
+			if(boardDTO.getBoardWriter().equals(memberDTO.getUserName())) {
+				return true;
+			}else {
+				request.setAttribute("path", "./list");
+				request.setAttribute("msg", "작성자만 가능");
+				RequestDispatcher v = request.getRequestDispatcher("/WEB-INF/views/commons/result.jsp");
+				v.forward(request, response);
+				return false;
+			}		
 	}
 	
 //	@Override
@@ -72,27 +69,31 @@ public class WriterCheckInterCeptor extends HandlerInterceptorAdapter {
 //			return;
 //		}
 //		
-//		Map<String, Object> map=modelAndView.getModel();
-////	 	Iterator<String> it = map.keySet().iterator();
-////	 	while(it.hasNext()) {
-////	 		String k = it.next();
-////	 		System.out.println(k);
-////	 		System.out.println(map.get(k));	 	
-////	 		}
-//		//작성자 정보
-//		BoardDTO boardDTO= (BoardDTO)map.get("boardDTO");
 //		
-//		//로그인정보
+//		Map<String, Object> map= modelAndView.getModel();
+////		Iterator<String> it = map.keySet().iterator();
+////		while(it.hasNext()) {
+////			String k = it.next();
+////			System.out.println(k);
+////			System.out.println(map.get(k));
+////		}
+//		//작성자 정보
+//		BoardDTO boardDTO  = (BoardDTO)map.get("boardDTO");
+//		
+//		
+//		//로그인 정보
 //		MemberDTO memberDTO = (MemberDTO)request.getSession().getAttribute("member");
 //		
 //		//비교
 //		if(!boardDTO.getBoardWriter().equals(memberDTO.getUserName())) {
-//			modelAndView.addObject("msg","작성자만 가능");
 //			modelAndView.addObject("path", "./list");
+//			modelAndView.addObject("msg", "작성자만 가능");
 //			modelAndView.setViewName("commons/result");
 //		}
+//		
 //		
 //		System.out.println(modelAndView.getViewName());
 //		
 //	}
+
 }

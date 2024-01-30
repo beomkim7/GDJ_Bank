@@ -36,14 +36,13 @@ public class Filter1 implements Filter {
 
 		// pass the request along the filter chain
 		
-		//servlet 진입 전 실행
+		//Servlet 진입 전 실행
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("servlet 진입 전");
+		System.out.println("Servlet 진입 전");
 		chain.doFilter(request, response);
 		response.setCharacterEncoding("UTF-8");
-		//응답이 나가기 전	
+		//응답이 나가기 전
 		System.out.println("응답 나가기 전");
-	
 	}
 
 	/**

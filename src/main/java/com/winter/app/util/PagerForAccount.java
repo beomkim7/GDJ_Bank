@@ -1,8 +1,6 @@
-package com.winter.app.member;
+package com.winter.app.util;
 
-import com.winter.app.files.FileDTO;
-
-public class AvatarDTO extends FileDTO {
+public class PagerForAccount extends Pager {
 	
 	private String userName;
 
@@ -13,8 +11,6 @@ public class AvatarDTO extends FileDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	
 	
 	
 

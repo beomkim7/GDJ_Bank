@@ -49,7 +49,9 @@ public class QnaController {
 	}
 	
 	@PostMapping("reply")
-	public String setReply(QnaDTO qnaDTO, MultipartFile [] attachs)throws Exception{
+	public String setReply(QnaDTO qnaDTO, MultipartFile [] attachs, HttpSession session)throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		qnaDTO.setBoardWriter(memberDTO.getUserName());
 		int result = qnaService.setReply(qnaDTO, attachs);
 		
 		return "redirect:./list";
@@ -75,7 +77,7 @@ public class QnaController {
 	}
 	
 	@PostMapping("add")
-	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs,HttpSession session)throws Exception{
+	public String setAdd(BoardDTO boardDTO, MultipartFile [] attachs, HttpSession session)throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		boardDTO.setBoardWriter(memberDTO.getUserName());
 		

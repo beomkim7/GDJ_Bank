@@ -1,23 +1,20 @@
- console.log("FileManager");
+console.log("FileManager");
 
-// {/* <div class="input-group">                          
-// <input class="form-control" type="file" name="attachs">
-// <span class="input-group-text text-danger" id="basic-addon2">x</span>
-// </div>    */}
+//<div class="input-group">
+//<input class="form-control" type="file" name="attachs">
+//<span class="input-group-text text-danger">X</span>
+//</div>
 
-let count = 0 ;
-let max = 5;
+let count=0; //현재 count
+let max=5;   //최대 갯수
 
-//------------------JS
+//--------- JS
 
-// let fileList = document.getElementById("fileList");
-// let fileAdd = document.getElementById("fileAdd");
+// const fileAdd = document.getElementById("fileAdd");
+// const filelist = document.getElementById("filelist");
 // const del = document.getElementsByClassName("del");
 
-// fileList.addEventListener("click",(e)=>{
-//     console.log(e);
-//     console.log(e.target);
-//     console.log(e.currentTarget);
+// filelist.addEventListener("click", (e)=>{
 //     if(e.target.classList.contains('del')){
 //         //e.target.parentNode.remove();
 //         let id = e.target.getAttribute("data-file-id");
@@ -27,94 +24,100 @@ let max = 5;
 // })
 
 
-//     let idx = 0;
+// let idx=0;
 
-//     fileAdd.addEventListener("click",()=>{
+// fileAdd.addEventListener("click", ()=>{
+//     if(count>=max){
+//         alert('파일은 최대 5개 까지 가능');
+//         return;
+//     }
+//     count++;
 //     idx++;
-//     let div = document.createElement("div");
-//     let ac= document.createAttribute("class");
-//     ac.value="input-group";
-//     div.setAttributeNode(ac);
+//     let div = document.createElement("div"); //<div></div>
+//     let ac = document.createAttribute("class"); //class=
+//     ac.value="input-group my-3";                     //class="input-group"
+//     div.setAttributeNode(ac);                   // <div class="input-group"></div>
 
-//     //id 추가
+//     //id추가
 //     ac = document.createAttribute("id");
-//     ac.value = "file"+idx;
-    
+//     ac.value="file"+idx;
+
 //     div.setAttributeNode(ac);
 
-//     let child = document.createElement("input");
-//     ac=document.createAttribute("class");
+//     let child = document.createElement("input"); //<input>
+    
+//     ac = document.createAttribute("class");
 //     ac.value="form-control";
 //     child.setAttributeNode(ac);
     
-//     ac=document.createAttribute("type");
+//     ac = document.createAttribute("type")
 //     ac.value="file";
 //     child.setAttributeNode(ac);
 
-//     ac=document.createAttribute("name");
+//     ac = document.createAttribute("name")
 //     ac.value="attachs";
 //     child.setAttributeNode(ac);
 
 //     div.appendChild(child);
 
-//     let span = document.createElement("span");
-//     let span_class=document.createAttribute("class");
-//     let span_id=document.createAttribute("id");
-//     let x=document.createTextNode("x")
-//     span_class.value="input-group-text text-danger del";
-//     span_id.value="basic-addon2"
+//     child=document.createElement("span");
+//     ac = document.createAttribute("class")
+//     ac.value="input-group-text text-danger del";
+//     child.setAttributeNode(ac);
 
-//     span.setAttributeNode(span_class);
-//     span.setAttributeNode(span_id);
-//     span.appendChild(x);
- 
-//     div.appendChild(span);
-    
+//     ac = document.createTextNode("X");
+//     child.appendChild(ac);
+
 //     ac = document.createAttribute("data-file-id")
 //     ac.value="file"+idx;
 
-//     span.appendChild(ac);
+//     child.setAttributeNode(ac);
 
-//     if(count>=max){    
-//         return;
-//     }
-//     count++;
-//     fileList.appendChild(div);
+//     div.appendChild(child);
+
+//     filelist.appendChild(div);
+
+
 // })
 
-//-----------------------------jquery
 
-count =$("#fileList").attr("data-file-count");
-max =$("#fileList").attr("data-file-max");
+//----------- Jquery
+count = $("#filelist").attr("data-file-count");
+max = $("#filelist").attr("data-file-max");
 
-$("#fileList").on("click",".del",function(){
+$("#filelist").on("click", ".del", function(e){
     $(this).parent().remove();
     count--;
 })
 
-$("#fileAdd").click(function(){
+$("#fileAdd").click(()=>{
     if(count>=max){
-        alert('파일은 최대 5개');
+        alert('파일은 최대 5개 까지 가능');
         return;
     }
     count++;
     // let element = '<div class="input-group">';
-    //  element+='<input class="form-control" type="file" name="attachs">';
-    //  element+='<span class="input-group-text text-danger" id="basic-addon2">x</span>';
-    //  element+='</div>';
+    // element=element+ '<input class="form-control" type="file" name="attachs">';
+    // element=element+'<span class="input-group-text text-danger">X</span>';
+    // element=element+ '</div>';
 
-    
-    
-    let element=`
-        <div class="input-group my-3">                          
+    let element= `
+        <div class="input-group my-3">
             <input class="form-control" type="file" name="attachs">
-            <span class="input-group-text text-danger del" id="basic-addon2">x</span>
+            <span class="input-group-text text-danger del">X</span>
         </div>
     `
-     $('#fileList').append(element);
-    
-})
+    $("#filelist").append(element);
+
+
+});
 
 $(".del").click(()=>{
-    console.log("del click");
-})
+    alert("Del Click");
+});
+
+
+
+
+
+

@@ -12,12 +12,6 @@
 
 
 getReplyList(1, up.getAttribute("data-product-num"));
-//수정 버튼
-replyList.addEventListener("click",(e)=>{
-	if(e.target.classList.contains("update")){
-		alert('update');
-	}
-})
 
 //삭제 버튼
 $("#replyList").on("click", ".del", function(){
@@ -96,8 +90,6 @@ function makeList(r){
 			td = document.createElement("td");
 			b = document.createElement("button")
 			b.innerHTML="수정";
-			//data-bs-toggle="modal" data-bs-target="#exampleModal">
-			
 			b.setAttribute("class", "update")
 			b.setAttribute("data-replyNum", r[i].replyNum)
 			td.append(b);

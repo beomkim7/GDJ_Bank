@@ -24,7 +24,7 @@
   			<result column="FILENAME" property="fileName"/>
   			<result column="ORINAME" property="oriName"/>
   		</collection>
-  	
+  		
   	</resultMap>
   	
   	<insert id="addFile" parameterType="ProductFileDTO">
@@ -35,8 +35,8 @@
   		<selectKey keyProperty="productNum" order="BEFORE" resultType="Long">
   			SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
   		</selectKey>
-  		INSERT INTO PRODUCT (PRODUCTNUM,PRODUCTNAME,PRODUCTCONTENTS,PRODUCTRATE, PRODUCTJUMSU, PRODUCTCOUNT)
-  		VALUES (#{productNum}, #{productName}, #{productContents}, #{productRate}, 0, 0)
+  		INSERT INTO PRODUCT (PRODUCTNUM,PRODUCTNAME,PRODUCTCONTENTS,PRODUCTRATE, PRODUCTJUMSU, PRODUCTCOUNT, PRODUCTSALE)
+  		VALUES (#{productNum}, #{productName}, #{productContents}, #{productRate}, 0, 0, 1)
   	</insert>
   	
   	<sql id="searchs">
@@ -66,11 +66,6 @@
   			 LEFT OUTER JOIN 
   			 PRODUCTFILES PF 
   			 ON P.PRODUCTNUM = PF.PRODUCTNUM
-  			 
-  			<!--  LEFT JOIN
-  			 REPLY R
-  			 ON P.PRODUCTNUM = R.PRODUCTNUM
-  			  -->
 		WHERE P.PRODUCTNUM=#{productNum}
   	</select>
   	
