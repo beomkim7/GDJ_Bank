@@ -70,19 +70,22 @@
 					<table>
 						<thead>
 							<tr>
-								<th>contents</th>
-								<th>writer</th>
-								<th>date</th>
+								<th>Contents</th>
+								<th>Writer</th>
+								<th>Date</th>
+								<th></th>
+								<th></th>
 							</tr>
 						</thead>
-						<tbody  id="replyList">
-
+						<tbody id="replyList" data-user="${member.userName}">
+							
 						</tbody>
-						
 					</table>
+
 					<div>
-						<button>더보기</button>
+						<button id="more" data-replyList-page="1" data-replyList-totalPage="1">더보기</button>
 					</div>
+
 				</div>
 
 				<div class="my-3">
@@ -112,6 +115,26 @@
 
 		</div>
 	</main>
+	
+<!-- Modal -->
+<div class="modal fade" id="replyUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
 	<!-- 사용전 경로를 꼭 수정하세요  -->
 	<!-- Footer  -->
 	<c:import url="../temps/footer.jsp"></c:import>

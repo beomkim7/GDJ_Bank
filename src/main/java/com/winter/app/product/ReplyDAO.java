@@ -24,5 +24,9 @@ public class ReplyDAO {
 	public Long getTotalCount(ReplyDTO replyDTO) throws Exception{
 		return sqlSession.selectOne(namespace+"getTotalCount", replyDTO);
 	}
+	
+	public int setDelete(ReplyDTO replyDTO) throws Exception{
+		return sqlSession.delete(namespace+"setDelete", replyDTO);
+	}
 
 }

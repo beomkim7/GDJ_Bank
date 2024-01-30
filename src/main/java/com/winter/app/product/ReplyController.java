@@ -20,42 +20,60 @@ import com.winter.app.util.Pager;
 @Controller
 @RequestMapping("/reply/*")
 public class ReplyController {
+
 	@Autowired
 	private ReplyService replyService;
-	@Autowired
-	private ProductService productService;
+	
+	@PostMapping("delete")
+	@ResponseBody
+	public Map<String, Object> setDelete(Pager pager, ReplyDTO replyDTO)throws Exception{
+		replyService.setDelete(replyDTO);
+	 	List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("datas", ar);
+		map.put("pager", pager);
+		
+		return map;
+	}
 	
 	@PostMapping("add")
-	public String setReply(Pager pager,ReplyDTO replyDTO,HttpSession session,Model model)throws Exception{
+	@ResponseBody
+	public Map<String, Object> setReply(Pager pager,ReplyDTO replyDTO, HttpSession session, Model model)throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		replyDTO.setUserName(memberDTO.getUserName());
+		
 		int result = replyService.setReply(replyDTO);
 		
 		List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
 		
-		model.addAttribute("list", ar);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("datas", ar);
+		map.put("pager", pager);
 		
-		return "product/replyListResult";
 		
-	}	
+		return map;
+		
+	}
 	
 	@GetMapping("list")
 	@ResponseBody
-	public Map<String,Object> getList(Pager pager,ReplyDTO replyDTO,Model model)throws Exception{
-		 List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
-		
+	public Map<String, Object> getList(Pager pager, ReplyDTO replyDTO, Model model)throws Exception {
+		List<ReplyDTO> ar = replyService.getList(pager, replyDTO);
 //		model.addAttribute("list", ar);
 //		model.addAttribute("pager", pager);
-		//[
-		//{"userName":"???", "contents:???","date":???},
-		//{"userName":"???", "contents:???","date":???},
-		//{"userName":"???", "contents:???","date":???},
+		
+		// [
+		//  {"userName":"???", "contents:???", "date":???},
+		//  {"userName":"???", "contents:???", "date":???},
+		//  {"userName":"???", "contents:???", "date":???},
 		//]
-		 
-		 Map<String,Object> map = new HashMap<String, Object>();
-		 map.put("datas", ar);
-		 map.put("pager",pager);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("datas", ar);
+		map.put("pager", pager);
+		
 		return map;
 	}
-		
+	
+	
 }
